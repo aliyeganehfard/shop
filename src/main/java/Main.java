@@ -272,7 +272,7 @@ public class Main {
                                 }
                                 break;
                             case "help":
-                                showAdminMenu();
+                                showCustomerMenu();
                                 break;
                             case "logout":
                                 state = false;
@@ -317,7 +317,6 @@ public class Main {
         System.out.println("showCategory");
         System.out.println("showProductByCategoryId categoryId");
         System.out.println("showShoppingCard");
-        System.out.println("addShoppingCard");
         System.out.println("addProductToCard productId shoppingCardId||(new) qty");
         System.out.println("buy shoppingCardId");
         System.out.println("help");
