@@ -106,7 +106,6 @@ public class CustomerRepository implements CustomerInterface {
                     resultSet.getString("address")
             );
         } catch (SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
