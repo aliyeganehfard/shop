@@ -13,7 +13,12 @@ public abstract class UserService<E extends User, R extends BaseRepository<E>> e
     }
 
     public E login(String userName , String password){
-        UserInterface<E> userInterface = (UserInterface<E>) r;
-        return userInterface.login(userName,password);
+        try{
+            UserInterface<E> userInterface = (UserInterface<E>) r;
+            return userInterface.login(userName,password);
+        }catch (Exception e){
+            System.out.println("not fount");
+        }
+        return null;
     }
 }
