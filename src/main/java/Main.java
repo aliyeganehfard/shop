@@ -43,10 +43,9 @@ public class Main {
                     try {
                         ExceptionHandling.isNationalCode(commend[3]);
                         adminService.save(new Admin(commend[1], commend[2], commend[3]));
-                    }catch (NationalCodeException nationalCodeException){
+                    } catch (NationalCodeException nationalCodeException) {
                         System.out.println("incorrect nationalCode!");
-                    }
-                    catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println("wrong input!");
                     }
                     break;
@@ -120,12 +119,11 @@ public class Main {
                                                     new Category(Integer.valueOf(commend[3]))
                                             )
                                     );
-                                }catch (WordException wordException){
+                                } catch (WordException wordException) {
                                     System.out.println("incorrect title!");
-                                }catch (DigitException digitException){
+                                } catch (DigitException digitException) {
                                     System.out.println("incorrect id");
-                                }
-                                catch (Exception e) {
+                                } catch (Exception e) {
                                     System.out.println("wrong input!");
                                 }
                                 break;
@@ -144,11 +142,11 @@ public class Main {
                                                     Integer.valueOf(commend[5])
                                             )
                                     );
-                                }catch (WordException ee){
+                                } catch (WordException ee) {
                                     System.out.println("incorrect name!");
-                                }catch (DigitException dd){
+                                } catch (DigitException dd) {
                                     System.out.println("enter digit!");
-                                }catch (MoneyException moneyException){
+                                } catch (MoneyException moneyException) {
                                     System.out.println("incorrect price!");
                                 } catch (Exception e) {
                                     System.out.println("wrong input!");
@@ -166,9 +164,9 @@ public class Main {
                                                     Integer.valueOf(commend[3])
                                             )
                                     );
-                                }catch (DigitException dd){
+                                } catch (DigitException dd) {
                                     System.out.println("enter digit!");
-                                }catch (MoneyException moneyException){
+                                } catch (MoneyException moneyException) {
                                     System.out.println("incorrect price!");
                                 } catch (Exception e) {
                                     System.out.println("wrong input!");
@@ -210,15 +208,15 @@ public class Main {
                                 try {
                                     ExceptionHandling.isDigit(commend[1]);
                                     productService.findByCategoryId(Integer.valueOf(commend[1]));
-                                } catch (DigitException dd){
+                                } catch (DigitException dd) {
                                     System.out.println("enter digit!");
-                                }catch (Exception e) {
+                                } catch (Exception e) {
                                     System.out.println("wrong number!");
                                 }
                                 break;
                             case "showShoppingCard":
                                 List<Order> orderList = customerService.findShoppingCardByUserId(customer.getId());
-                                for (Order sc :orderList) {
+                                for (Order sc : orderList) {
                                     System.out.println(sc.toString());
                                 }
                                 break;
@@ -226,7 +224,7 @@ public class Main {
                                 try {
                                     ExceptionHandling.isDigit(commend[1]);
                                     ShoppingCard shoppingCard = null;
-                                    if (commend[2].equals("new")){
+                                    if (commend[2].equals("new")) {
                                         shoppingCardService.save(
                                                 new ShoppingCard(
                                                         Date.valueOf(LocalDate.now()),
@@ -235,39 +233,41 @@ public class Main {
                                         );
                                         int a = shoppingCardService.findAll().size();
                                         shoppingCard = shoppingCardService.findAll().get(--a);
-                                    }else {
-                                       shoppingCard = shoppingCardService.findById(Integer.valueOf(commend[2]));
+                                    } else {
+                                        shoppingCard = shoppingCardService.findById(Integer.valueOf(commend[2]));
                                     }
 
                                     Product product = productService.findById(Integer.valueOf(commend[1]));
-                                    if (!(product.getQty()>= Integer.parseInt(commend[3]))){
+                                    if (!(product.getQty() >= Integer.parseInt(commend[3]))) {
                                         System.out.println("not enough qty!");
                                         break;
                                     }
                                     product.setQty(Integer.valueOf(commend[3]));
-                                        orderService.save(
-                                                new Order(
-                                                        customer,
-                                                        product,
-                                                        shoppingCard
-                                                )
-                                        );
-
-                                }catch (DigitException dd){
+                                    orderService.save(
+                                            new Order(
+                                                    customer,
+                                                    product,
+                                                    shoppingCard
+                                            )
+                                    );
+                                    Product product1 = productService.findById(Integer.valueOf(commend[1]));
+                                    product1.setQty(product1.getQty()-Integer.parseInt(commend[3]));
+                                    productService.update(product1);
+                                } catch (DigitException dd) {
                                     System.out.println("enter digit!");
                                 } catch (Exception e) {
                                     System.out.println("wrong input!");
                                 }
                                 break;
                             case "buy":
-                                try{
+                                try {
                                     ExceptionHandling.isDigit(commend[1]);
                                     ShoppingCard shoppingCard = shoppingCardService.findById(Integer.valueOf(commend[1]));
                                     shoppingCard.setPayed(true);
                                     shoppingCardService.update(shoppingCard);
-                                }catch (DigitException dd){
+                                } catch (DigitException dd) {
                                     System.out.println("enter digit!");
-                                }catch (Exception e){
+                                } catch (Exception e) {
                                     System.out.println("wrong input!");
                                 }
                                 break;
@@ -278,8 +278,8 @@ public class Main {
                                 state = false;
                                 break;
                             case "exit":
-                                state=false;
-                                flag=false;
+                                state = false;
+                                flag = false;
                                 break;
                             default:
                                 System.out.println("wong input!");
