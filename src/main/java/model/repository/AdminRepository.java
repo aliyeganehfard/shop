@@ -23,7 +23,6 @@ public class AdminRepository implements UserInterface<Admin> {
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (Exception e) {
-            e.getStackTrace();
             System.out.println("save operation was failed!");
         }
     }
@@ -37,7 +36,6 @@ public class AdminRepository implements UserInterface<Admin> {
             preparedStatement.executeUpdate();
             preparedStatement.close();
         }catch (Exception e){
-            e.getStackTrace();
             System.out.println("delete operation was failed!");
         }
     }
@@ -105,7 +103,7 @@ public class AdminRepository implements UserInterface<Admin> {
                     resultSet.getString("national_code")
             );
         } catch (SQLException e) {
-            e.printStackTrace();
+
         }
         return null;
     }
@@ -121,7 +119,6 @@ public class AdminRepository implements UserInterface<Admin> {
             resultSet.next();
             return getResultSet(resultSet);
         }catch (Exception e){
-            e.getStackTrace();
             System.out.println("login operation was failed!");
         }
         return null;

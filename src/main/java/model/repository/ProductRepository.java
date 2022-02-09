@@ -132,7 +132,6 @@ public class ProductRepository implements ProductInterface {
             preparedStatement.close();
             return productList;
         } catch (Exception e) {
-            e.getStackTrace();
             System.out.println("findByCategoryId operation was failed!");
         }
         return null;

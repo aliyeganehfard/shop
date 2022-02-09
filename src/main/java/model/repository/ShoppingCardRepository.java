@@ -104,7 +104,6 @@ public class ShoppingCardRepository implements Repository<ShoppingCard> {
                     resultSet.getBoolean("payed")
             );
         } catch (Exception e) {
-            e.getStackTrace();
             System.out.println("resultSet operation was failed!");
         }
         return null;

@@ -104,7 +104,6 @@ public class OrderRepository implements Repository<Order> {
                     new ShoppingCard(resultSet.getInt("shopping_card_id"))
             );
         } catch (Exception e) {
-            e.getStackTrace();
             System.out.println("save operation was failed!");
         }
         return null;

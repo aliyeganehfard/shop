@@ -165,7 +165,6 @@ public class CustomerRepository implements CustomerInterface {
             resultSet.next();
             return getResultSet(resultSet);
         } catch (Exception e) {
-            e.getStackTrace();
             System.out.println("login operation was failed!");
         }
         return null;

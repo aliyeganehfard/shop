@@ -103,7 +103,6 @@ public class CategoryRepository implements Repository<Category> {
                     new Category(resultSet.getInt("category_id"))
             );
         } catch (Exception e) {
-            e.getStackTrace();
             System.out.println("getResultSet operation was failed!");
         }
         return null;
