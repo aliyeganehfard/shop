@@ -20,6 +20,7 @@ public class Admin extends User  {
         this.nationalCode = nationalCode;
     }
 
+
     public String getNationalCode() {
         return nationalCode;
     }

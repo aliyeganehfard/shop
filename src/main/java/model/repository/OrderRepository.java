@@ -108,4 +108,46 @@ public class OrderRepository implements Repository<Order> {
         }
         return null;
     }
+
+    public List<Order> findShoppingCardByUserId(Integer id) {
+        try {
+            List<Order> orderList = new ArrayList<>();
+            query = "select * from Customer c\n" +
+                    "    inner join SH_Order SO on c.id = SO.customer_id\n" +
+                    "    inner join SH_Product p on p.id = SO.product_id\n" +
+                    "    inner join SH_ShoppingCard SSC on SSC.id = SO.shopping_card_id\n" +
+                    "where c.id = ? and SSC.payed=false";
+            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                orderList.add(
+                        new Order(
+                                resultSet.getInt(1),
+                                new Customer(
+                                        resultSet.getInt("customer_id"),
+                                        resultSet.getString("userName"),
+                                        resultSet.getString("password")
+                                ),
+                                new Product(
+                                        resultSet.getInt("product_id"),
+                                        resultSet.getString("name")
+                                ),
+                                new ShoppingCard(
+                                        resultSet.getInt("shopping_card_id")
+                                )
+                        )
+                );
+
+            }
+            return orderList;
+        } catch (Exception e) {
+            e.getStackTrace();
+            System.out.println(e);
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+            System.out.println("save operation was failed!");
+        }
+        return null;
+    }
 }

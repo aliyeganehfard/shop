@@ -17,11 +17,22 @@ public class Main {
     public static void main(String[] args) {
         var scn = new Scanner(System.in);
         var adminService = new AdminService();
-        var customerService = new CustomerService();
+//        var customerService = new CustomerService();
+        var customerService = new CustomerServiceHibernate();
         var categoryService = new CategoryService();
         var productService = new ProductService();
         var shoppingCardService = new ShoppingCardService();
         var orderService = new OrderService();
+        var customerServiceHibernateHibernate = new CustomerServiceHibernate();
+        var customerHibernate = new Customer(null,"ali","yegane","lar");
+        customerServiceHibernateHibernate.save(customerHibernate);
+        System.out.println("id : " + customerHibernate.getId());
+//        var c = customerServiceHibernateHibernate.findById(customerHibernate.getId());
+//        System.out.println("customer : " +c);
+
+        System.out.println("login " +
+                customerServiceHibernateHibernate.login("ali","yegane")
+        );
 
         boolean flag = true;
         boolean state = false;
@@ -215,7 +226,7 @@ public class Main {
                                 }
                                 break;
                             case "showShoppingCard":
-                                List<Order> orderList = customerService.findShoppingCardByUserId(customer.getId());
+                                List<Order> orderList = orderService.findShoppingCardByUserId(customer.getId());
                                 for (Order sc : orderList) {
                                     System.out.println(sc.toString());
                                 }
